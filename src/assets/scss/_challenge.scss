@@ -1,0 +1,113 @@
+@import './base';
+@import './variables';
+
+@mixin verticalElement() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin horizontalElement {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin elementWidth($minWidth, $maxWidth) {
+    min-width: $minWidth;
+    max-width: $maxWidth;
+}
+
+.content-element {
+    width: 100%;
+    margin: 2rem 1rem;
+    border: 1px solid $contentBorderColor;
+    
+    .content-element__author {
+        background-color: $authorBg;
+        padding: $defaultSpacing;
+
+        .content-element__author-img {
+            width: 120px;
+        }
+
+        .content-element__author-name {
+            font-weight: bold;
+            font-size: 1.4rem;
+            margin: $defaultSpacing;
+        }
+
+        .content-element__author-email {
+            font-size: 1.2rem;
+            color: $authorEmailLinkColor;
+        }
+    }
+
+    .content-element__content {
+        padding: $defaultSpacing;
+
+        .content-element__content-img {
+            width: 100%;
+        }
+        .content-element__content-heading {
+            margin: $defaultSpacing 0;
+        }
+
+        .content-element__content-btn {
+            border-radius: 5px;
+            color: $btnColor;
+            background-color: $btnBgColor;
+            padding: 0.5rem 1rem;
+            margin: $defaultSpacing 0 0 0;
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+    .content-element-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+       
+        .content-element {
+            @include verticalElement();
+
+            .content-element__content { 
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+    .content-element-list {
+        .content-element {
+            @include horizontalElement();
+
+            .content-element__content { 
+                text-align: left;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .content-element-list {
+        .content-element {
+            @include verticalElement();
+            @include elementWidth(300px, 350px);
+
+            .content-element__content { 
+                text-align: center;
+            }
+        }
+    }   
+}
+
+@media screen and (min-width: $breakpoint-lg) {
+    .content-element-list {
+        .content-element {
+            @include verticalElement();
+            @include elementWidth(250px, 295px);
+        }
+    }   
+}
